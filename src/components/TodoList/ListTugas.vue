@@ -48,7 +48,7 @@
           >
             {{ index }}edit
           </v-btn>
-          
+
           <v-btn
             small
             @click="
@@ -68,7 +68,12 @@
         </template>
 
         <template v-slot:[`item.checkboxDelete`]="{ item }">
-           <input type="checkbox" class="custom-control-input" :value="item.task" v-model="selectedItem" >
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            :value="item.task"
+            v-model="selectedItem"
+          />
         </template>
       </v-data-table>
     </v-card>
@@ -153,19 +158,17 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <br>
+    <br />
     <v-card v-if="selectedItem.length != 0">
       <v-card-title>Delete Multiple</v-card-title>
       <v-card-text>
         <ul>
           <li v-for="selected in selectedItem" :key="selected">
-              {{selected}}
+            {{ selected }}
           </li>
         </ul>
-        <br>
-        <v-btn color="error"  @click="deleteMultiple">
-            HAPUS SEMUA
-          </v-btn>
+        <br />
+        <v-btn color="error" @click="deleteMultiple"> HAPUS SEMUA </v-btn>
       </v-card-text>
     </v-card>
   </v-main>
@@ -278,17 +281,17 @@ export default {
       else if (priority == "Biasa") return "blue";
     },
     deleteMultiple() {
-      var i,j;
-      for(i in this.selectedItem) {
+      var i, j;
+      for (i in this.selectedItem) {
         for (j in this.todos) {
-           if(this.selectedItem[i] == this.todos[j].task) {
-             console.log("Index",i,j)
-              this.todos.splice(j,1);
+          if (this.selectedItem[i] == this.todos[j].task) {
+            console.log("Index", i, j);
+            this.todos.splice(j, 1);
           }
         }
       }
-      this.selectedItem =[]
-    }
+      this.selectedItem = [];
+    },
   },
 
   computed: {
